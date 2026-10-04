@@ -3,3 +3,6 @@
 https://tv-trtkurdi.medya.trt.com.tr/master.m3u8
 #EXTINF:-1 tvg-name="Rudaw" tvg-id="Rudaw" tvg-logo="https://raw.githubusercontent.com/mglazardayy24-svg/Xom/main/download.png" group-title="Kurdish",Rudaw
 https://live.rudaw.net/hls/rudaw-tv/stream_1080p.m3u8
+#EXTINF:-1 tvg-name="Channel 8" tvg-logo="https://raw.githubusercontent.com/k19848781-eng/Mohammed/main/channel8.png" group-title="Kurdish",Channel 8
+https://live.channel8.com/Channel8-Kurdish/tracks-v4/index.fmp4.m3u8#EXTINF:-1 tvg-name="Channel 8" tvg-logo="https://raw.githubusercontent.com/k19848781-eng/Mohammed/main/channel8.png" group-title="Kurdish",Channel 8
+https://live.channel8.com/Channel8-Kurdish/tracks-v4/index.fmp4.m3u8
