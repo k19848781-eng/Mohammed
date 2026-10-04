@@ -9,5 +9,5 @@ https://live.channel8.com/Channel8-Kurdish/tracks-v4a1/mono.m3u8
 https://ava001.xyz/upload/ava.m3u8
 #EXTINF:-1 tvg-id="Kurdmax.iq" tvg-name="Kurdmax" tvg-logo="https://raw.githubusercontent.com/k19848781-eng/Mohammed/main/kurdmax.jpg" tvg-country="IQ" group-title="Kurdish",Kurdmax
 https://www.kurdmax.tv/live-stream
-#EXTINF:-1 tvg-id="Kurdmax 3.iq" tvg-name="Kurdmax" tvg-logo="https://raw.githubusercontent.com/k19848781-eng/Mohammed/main/kurdmax.jpg" tvg-country="IQ" group-title="Kurdish",Kurdmax [2]
+#EXTINF:-1 tvg-id="Kurdmax.iq" tvg-name="Kurdmax" tvg-logo="https://raw.githubusercontent.com/k19848781-eng/Mohammed/main/kurdmax.jpg" tvg-country="IQ" group-title="Kurdish",Kurdmax
 http://31.43.191.125:8080/live/restream/restream/25194.ts
