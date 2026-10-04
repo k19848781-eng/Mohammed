@@ -8,6 +8,5 @@ https://ava001.xyz/upload/ava.m3u8
 #EXTINF:-1 tvg-id="Kurdmax.iq" tvg-name="Kurdmax" tvg-logo="https://raw.githubusercontent.com/k19848781-eng/Mohammed/main/kurdmax.jpg" tvg-country="IQ" group-title="Kurdish",Kurdmax
 https://www.kurdmax.tv/live-stream
 #EXTINF:-1 tvg-id="Kurdmax.iq" tvg-name="Kurdmax" tvg-logo="https://raw.githubusercontent.com/k19848781-eng/Mohammed/main/kurdmax.jpg" tvg-country="IQ" group-title="Kurdish",Kurdmax
-http://31.43.191.125:8080/live/restream/restream/25194.ts
-#EXTINF:-1 tvg-id="AfarinTV.iq" tvg-name="Afarin TV" tvg-logo="https://raw.githubusercontent.com/k19848781-eng/Mohammed/main/afarintv.jpg" tvg-country="IQ" group-title="Kurdish",Afarin TV
+http://31.43.191.155:8080/live/restream/restream/25194.ts?token=TxBbUEFZGgNDDQ9UUQRRDAQDAQhSUgYEBQFTBwMIA1IMAwQIVwcLCwMbFRREQRFcVwtsWFNECwJUBl0CGRoQElFAbFhWEwIbVxsVFENcDlwUXAIGDlcABVIDXQ8ZGhUIUBAJEwAGAAFUGxUUUk0XXEQIUl1oAlRGCFQBFA9WEA1YHhFeXG5cXAxYV1IVD0EIFEoRWEQWEwoPQghaGRoHCEBAUkVXEwIbUAwNBBUZQVpZE11FRR8TCkN+NRQZGgAZQFddQlteVhtbG01FFRlBUEU5QVREEkNVAFoBRBcCR1AWHhFcU0lnWg5XV1NUQQpWWBURCxVXAQBDG0ZbWlYMFVtAbEFbVRoDQwoNBQQAQUQ=#EXTINF:-1 tvg-id="AfarinTV.iq" tvg-name="Afarin TV" tvg-logo="https://raw.githubusercontent.com/k19848781-eng/Mohammed/main/afarintv.jpg" tvg-country="IQ" group-title="Kurdish",Afarin TV
 https://5dcabf026b188.streamlock.net/afarinTV/livestream/chunklist_w853430703.m3u8
