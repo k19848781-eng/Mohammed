@@ -1,17 +1,13 @@
 #EXTM3U
+#EXTINF:0,Reklam
+#EXTGRP:CHANNELS
+https://archive.org/download/vid-20260919-031449-288/VID_20260919_031449_288.ia.mp4
 #EXTINF:0,Kurdsat TV
 #EXTGRP:CHANNELS
 https://hlspackager.akamaized.net/live/DB/KURDSAT_HD/HLS/KURDSAT_HD-avc1_2500000=10002,mp4a_128000=20000.m3u8
 #EXTINF:0,Kurdsat News TV
 #EXTGRP:CHANNELS
 https://hlspackager.akamaized.net/live/DB/KURDSAT_NEWS/HLS/KURDSAT_NEWS-avc1_2500000=10002,mp4a_128000=20000.m3u8
-#EXTINF:0,U TV Hawler
-#EXTGRP:CHANNELS
-https://vsd123.okcdn.ru/dash/stream_3527542770279/stream.manifest/sig/bn0uGTXDsiA/expires/1790595152526/srcIp/62.201.254.212/urls/178.237.29.198/clientType/0/srcAg/CHROME/mid/4728653618791/stream-high.jidx?_rnd=932032140
-#EXTINF:0,Reklam
-#EXTGRP:CHANNELS
-https://archive.org/download/vid-20260919-031449-288/VID_20260919_031449_288.ia.mp4
-#EXTINF:0,Bangawaz
 #EXTGRP:CHANNELS
 http://bangawaztv.ddns.net:40/live/bangawaztv/playlist.m3u8
 #EXTINF:0,Payam TV
