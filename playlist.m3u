@@ -8,9 +8,9 @@ https://hlspackager.akamaized.net/live/DB/KURDSAT_NEWS/HLS/KURDSAT_NEWS.m3u8
 #EXTINF:0,Kurdsat News TV
 #EXTGRP:CHANNELS
 https://hlspackager.akamaized.net/live/DB/KURDSAT_NEWS/HLS/KURDSAT_NEWS-avc1_2500000=10002,mp4a_128000=20000.m3u8
-#EXTINF:0, Bangawaz TV
+#EXTINF:0,Rudaw TV
 #EXTGRP:CHANNELS
-http://bangawaztv.ddns.net:40/live/bangawaztv/playlist.m3u8
+https://live.rudaw.net/hls/rudaw-tv/master.m3u8
 #EXTINF:0,Payam TV
 #EXTGRP:CHANNELS
 https://hlspackager.akamaized.net/live/DB/PAYAM_TV/HLS/PAYAM_TV-avc1_2500000=10002,mp4a_128000=20000.m3u8
