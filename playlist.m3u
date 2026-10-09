@@ -1,262 +1,262 @@
 #EXTM3U
 #EXTINF:0,Kurdsat TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://hlspackager.akamaized.net/live/DB/KURDSAT_HD/HLS/KURDSAT_HD-avc1_2500000=10002,mp4a_128000=20000.m3u8
 #EXTINF:0,Kurdsat News TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://hlspackager.akamaized.net/live/DB/KURDSAT_NEWS/HLS/KURDSAT_NEWS-avc1_2500000=10002,mp4a_128000=20000.m3u8
 #EXTINF:0,U TV Hawler
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://vsd123.okcdn.ru/dash/stream_3527542770279/stream.manifest/sig/bn0uGTXDsiA/expires/1790595152526/srcIp/62.201.254.212/urls/178.237.29.198/clientType/0/srcAg/CHROME/mid/4728653618791/stream-high.jidx?_rnd=932032140
 #EXTINF:0,Reklam
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://archive.org/download/vid-20260919-031449-288/VID_20260919_031449_288.ia.mp4
 #EXTINF:0,Bangawaz
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 http://bangawaztv.ddns.net:40/live/bangawaztv/playlist.m3u8
 #EXTINF:0,Payam TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://hlspackager.akamaized.net/live/DB/PAYAM_TV/HLS/PAYAM_TV-avc1_2500000=10002,mp4a_128000=20000.m3u8
 #EXTINF:0,Kurdistan 24
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://hlspackager.akamaized.net/live/DB/K24/HLS/K24-avc1_2500000=10002,mp4a_128000=20000.m3u8
 #EXTINF:0,Kirkuk
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 http://silka.m3um9xplus.org:2052/live/88577072662804/15518509928643/601413.ts
 #EXTINF:0,Gali Kurdistan
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://live.host247.net/gk/gksat/chunklist_w1044399986.m3u8
 #EXTINF:0,Zhin Film
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://183.bozztv.com/giatv/giatv-zhinfilm/zhinfilm/playlist.m3u8
 #EXTINF:0,Kurdmax Show
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 http://silka.m3um9xplus.org:2052/live/88577072662804/15518509928643/601422.ts
 #EXTINF:0,Animal Box
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://live20.bozztv.com/giatv/giatv-animalbox/animalbox/chunks.m3u8
 #EXTINF:0,Znar TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://live20.bozztv.com/giatv/giatv-halabja88tv/halabja88tv/playlist.m3u8
 #EXTINF:0,Khak TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 http://khakhd.ddns.net:1935/stream/khakhd/playlist.m3u8
 #EXTINF:0,Kurdistan TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://5a3ed7a72ed4b.streamlock.net/live/SMIL:myStream.smil/chunklist_w847921336_b1700000_sleng_t64MTA4MHA=.m3u8
 #EXTINF:0,Rozhelat TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://hlspackager.akamaized.net/live/DB/ROJHELAT/HLS/ROJHELAT-avc1_2500000=10002,mp4a_128000=20000.m3u8
 #EXTINF:0,IRIB Kurdistan
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://ncdn.telewebion.ir/kordestan/live/playlist.m3u8
 #EXTINF:0,Mahabad TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://ncdn.telewebion.ir/mahabad/live/playlist.m3u8
 #EXTINF:0,Kermanshah TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://live-aburayhan1101.telewebion.ir/ek/zagros/live/576p/index.m3u8
 #EXTINF:0,Afra Film TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://afrafhls.wns.live/hls/stream.m3u8
 #EXTINF:0,Avar TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 http://avrstream.com:1935/live/AvarTv/playlist.m3u8
 #EXTINF:0,Euro Kurd Tv
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 http://baskhd.ddns.net:40/live/Eurokurd/index.m3u8
 #EXTINF:0,Soran TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 http://avrstream.com:1935/live/SoranEntertainment/playlist.m3u8
 #EXTINF:0,Shna TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 http://shnatv.ddns.net:1935/live/shnatv/playlist.m3u8
 #EXTINF:0,Speda Drama TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://speda2.site/upload/images/spedadrama.m3u8
 #EXTINF:0,Dunya TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 http://dunyahd.ddns.net/live/DunyaHd/index.m3u8
 #EXTINF:0,Komal TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://lbgo.bozztv.com/ssh101/ssh101/onetvkomall/chunks.m3u8
 #EXTINF:0,IMK TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 http://imkhd.ddns.net:1935/live/imkhd/playlist.m3u8
 #EXTINF:0,Mihrab TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 http://baskhd.ddns.net:40/live/MihrabTV/playlist.m3u8?checkedby:Halabja88
 #EXTINF:0,Derin TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 http://baskhd.ddns.net:40/live/Derin/index.m3u8?checkedby:Halabja88
 #EXTINF:0,Shar Family TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 http://avrstream.com:1935/live/SHARTV/playlist.m3u8
 #EXTINF:0,Infinity TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://cdn.karwan.tv/infinity-tv/index.m3u8
 #EXTINF:0,Parwarday Slemany
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://183.bozztv.com/giatv/giatv-parwardasuli/parwardasuli/playlist.m3u8
 #EXTINF:0,Mix Kurdy TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 http://avrstream.com:1935/live/Mix-kurdy/playlist.m3u8
 #EXTINF:0,Garyan TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://live20.bozztv.com/giatv/giatv-halabja88garyan/halabja88garyan/chunks.m3u8
 #EXTINF:0,Iraqia Kurd TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://imn-live.esite-lab.com/hls/iraqia-kurdish.m3u8
 #EXTINF:0,War TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://live.kwikmotion.com/waarmedialive/waarmedia.smil/waarmediapublish/waarmedia_source/chunks.m3u8
 #EXTINF:0,Eman TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 http://avrstream.com:1935/live/emantv/playlist.m3u8
 #EXTINF:0,Esra TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://live20.bozztv.com/giatv/giatv-ESRAHD/ESRAHD/chunks.m3u8
 #EXTINF:0,Ava TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 http://hlspackager.akamaized.net/live/DB/AVA_TV/HLS/AVA_TV-avc1_2500000=10002,mp4a_128000=20000.m3u8
 #EXTINF:0,Rudaw TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://live.rudaw.net/hls/rudaw-tv/master.m3u8
 #EXTINF:0,Kurdmax TV
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://www.youtube.com/live_chat?continuation=0ofMyAOEARpeQ2lrcUp3b1lWVU5LTlhaZlRVTlpOa2RPVlVKVVR6Z3RSRE5ZYjBGbkVndG9UbU51WDJrNGRFVlBieG9UNnFqZHVRRU5DZ3RvVG1OdVgyazRkRVZQYnlBQk1BQSUzRDABggEMCAQYAiAAKAAwADgAiAEBoAG-7df53o-XA6gBALIBAA%253D%253D&amp;authuser=0
 #EXTINF:0,Channel 8
-#EXTGRP:Kurdish
+#EXTGRP:CHANNELS
 https://live.channel8.com/Channel8-Kurdish/tracks-v4a1/mono.m3u8
 #EXTINF:0,Afarin Baxcha TV
-#EXTGRP:Kids
+#EXTGRP:CHANNELS
 http://afarintv2.flashmediacast.com:1935/afarinTV/livestream/playlist.m3u8
 #EXTINF:0,Zarok TV
-#EXTGRP:Kids
+#EXTGRP:CHANNELS
 https://zindisorani.zaroktv.com.tr/hls/0/stream.m3u8
 #EXTINF:0,Rewi u Kalasher
-#EXTGRP:Kids
+#EXTGRP:CHANNELS
 https://zindisorani.zaroktv.com.tr/hls/0/stream.m3u8
 #EXTINF:0,Kidko TV
-#EXTGRP:Kids
+#EXTGRP:CHANNELS
 http://avrstream.com:1935/live/kidcohd/playlist.m3u8
 #EXTINF:0,Minika Go
-#EXTGRP:Kids
+#EXTGRP:CHANNELS
 https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/minikago/minikago.m3u8
 #EXTINF:0,Baby Shark
-#EXTGRP:Kids
+#EXTGRP:CHANNELS
 https://newidco-babysharktv-1-gb.lg.wurl.tv/playlist.m3u8
 #EXTINF:0,PBS Kids
-#EXTGRP:Kids
+#EXTGRP:CHANNELS
 https://livestream.pbskids.org/out/v1/3fe3030a2c8045a3932f4289d9eba3e6/mst.m3u8
 #EXTINF:0,One Kids
-#EXTGRP:Kids
+#EXTGRP:CHANNELS
 https://lbgo.bozztv.com/ssh101/ssh101/onekids4k/chunks.m3u8
 #EXTINF:0,Maraya Kids
-#EXTGRP:Kids
+#EXTGRP:CHANNELS
 https://live.kwikmotion.com/smckidslive/tjkids1.smil/smckidspublish/tjkids1_source/chunks.m3u8
 #EXTINF:0,Roya Kids
-#EXTGRP:Kids
+#EXTGRP:CHANNELS
 https://fast.kwikmotion.com/roya/kids/playlist/kmfast_2.m3u8
 #EXTINF:0,Super Kids
-#EXTGRP:Kids
+#EXTGRP:CHANNELS
 https://super.krd/live/kids.m3u8
 #EXTINF:0,Afarin TV
-#EXTGRP:Kids
+#EXTGRP:CHANNELS
 https://65f16f0fdfc51.streamlock.net/afarinTV/livestream/playlist.m3u8
 #EXTINF:0,AVA Sport
-#EXTGRP:Sport
+#EXTGRP:CHANNELS
 http://silka.m3um9xplus.org:2052/live/17348628947896/34839548609025/601394.ts
 #EXTINF:0,Match TV
-#EXTGRP:Sport
+#EXTGRP:CHANNELS
 http://tv.tuva.ru/machtv/index.m3u8
 #EXTINF:0,IRIB TV 3
-#EXTGRP:Sport
+#EXTGRP:CHANNELS
 https://live-aburayhan1105.telewebion.ir/ek/tv3/live/1080p/index.m3u8
 #EXTINF:0,IRIB VERZISH
-#EXTGRP:Sport
+#EXTGRP:CHANNELS
 https://cdn.faina.ir/faina-stream/tenants/3887e2cb-0766-419d-ac8a-6303ca2f09dc/videos/ecdb4522-b564-48cd-8814-8e22ea5e2344/hls/master.m3u8
 #EXTINF:0,Bein Sport 1
-#EXTGRP:Sport
+#EXTGRP:CHANNELS
 http://silka.m3um9xplus.org:2052/live/23763157568088/22844041149008/677039.ts
 #EXTINF:0,Iraqia Sport
-#EXTGRP:Sport
+#EXTGRP:CHANNELS
 http://silka.m3um9xplus.org:2052/live/21116253178258/14909458224355/97079.ts
 #EXTINF:0,Bein Sport 2
-#EXTGRP:Sport
+#EXTGRP:CHANNELS
 http://102.177.177.177:8080/live/88577072662804/15518509928643/676986.ts?token=HafHHc.ydaUyfy.X.fadU.yHXbcyabXy.X.y.IQ.ts.169f6dcb450a348f0952d179125e70b3a55a067d5e5bc110ef1b8fbe970d5bb3...c2lsa2EubTN1bTl4cGx1cy5vcmc=
 #EXTINF:0,Bein Sport 3
-#EXTGRP:Sport
+#EXTGRP:CHANNELS
 http://silka.m3um9xplus.org:2052/live/17348628947896/34839548609025/677059.ts
 #EXTINF:0,Bein Sport 4
-#EXTGRP:Sport
+#EXTGRP:CHANNELS
 http://silka.m3um9xplus.org:2052/live/21116253178258/14909458224355/676997.ts
 #EXTINF:0,Bein Sport 5
-#EXTGRP:Sport
+#EXTGRP:CHANNELS
 http://194.76.0.163/8zpo3GsVY7/beneficial2concern/652337?token=ShJdY2ZmQQNHCmMZCDZXUh9GSHAWGFMD.ZDsGQVN.WGBFNX013GR9YV1QbGBp0QE9SWmpcXlQXXlUHWlcbRxFACmcDY1tXEVkbVAoAAQJUFxUbRFldAxdeUAdaVAFcUwcHAhwWQlpXQQMLTFhUG0FQQU1VQl4HWTsFVBQLVABGCVxEXFgeEVwNZgFcWVlZBxcDGwESHERcFxETWAxCCQgfEFNZQEBSRwYbX1dBVFtPF1pWRV5EFExGWxMmJxVJRlZKRVVaQVpcDRtfG0BLFU8XUEpvQlUVQRYEUA8HRUdeEQITHBZfUks8WgpXWl1UF1xWV0MSCkQERk0TDw1ZDBBcQG5AXVYRCQ1MCVVJ
 #EXTINF:0,Bein Sport 6
-#EXTGRP:Sport
+#EXTGRP:CHANNELS
 http://194.76.0.163/8zpo3GsVY7/beneficial2concern/652338?token=ShJdY2ZmQQNHCmMZCDZXUh9GSHAWGFMD.ZDsGQVN.WGBFNX013GR9YV1QbGBp0QE9SWmpcXlQXXlUHWlcbRxFACmcDY1tXEVkbVAoAAQJUFxUbRFldAxdeUAdaVAFcUwcHAhwWQlpXQQMLTFhUG0FQQU1VQl4HWTsFVBQLVABGCVxEXFgeEVwNZgFcWVlZBxcDGwESHERcFxETWAxCCQgfEFNZQEBSRwYbX1dBVFtPF1pWRV5EFExGWxMmJxVJRlZKRVVaQVpcDRtfG0BLFU8XUEpvQlUVQRYEUA8HRUdeEQITHBZfUks8WgpXWl1UF1xWV0MSCkQERk0TDw1ZDBBcQG5AXVYRCQ1MCVVJ
 #EXTINF:0,Alwan Sport 1
-#EXTGRP:Sport
+#EXTGRP:CHANNELS
 https://raw.githubusercontent.com/ghooooooooooodfer/my-stream/refs/heads/main/Alwansp3.m3u8
 #EXTINF:0,Alwan Sport 2
-#EXTGRP:Sport
+#EXTGRP:CHANNELS
 https://raw.githubusercontent.com/ghooooooooooodfer/my-stream/refs/heads/main/Alwansp2.m3u8
 #EXTINF:0,Alwan Sport 3
-#EXTGRP:Sport
+#EXTGRP:CHANNELS
 http://silka.m3um9xplus.org:2052/live/88577072662804/15518509928643/649710.ts
 #EXTINF:0,Alwan Sport 4
-#EXTGRP:Sport
+#EXTGRP:CHANNELS
 http://silka.m3um9xplus.org:2052/live/88577072662804/15518509928643/649705.ts
 #EXTINF:0,Alwan Sport 5
-#EXTGRP:Sport
+#EXTGRP:CHANNELS
 http://stream.mcquack.net/33/index.m3u8
 #EXTINF:0,Alwan Sport 6
-#EXTGRP:Sport
+#EXTGRP:CHANNELS
 http://core.itsall.pro/megapeer/PQubhxj8KGGKSLPAKS/286225
 #EXTINF:0,Kelga TV
-#EXTGRP:Documentary
+#EXTGRP:CHANNELS
 https://lbgo.bozztv.com/ssh101/live/Kelga/playlist.m3u8
 #EXTINF:0,Fishing TV
-#EXTGRP:Documentary
+#EXTGRP:CHANNELS
 https://linear-80.frequency.stream/dist/localnow/80/hls/master/playlist_1280x720.m3u8
 #EXTINF:0,MMN Documentary
-#EXTGRP:Documentary
+#EXTGRP:CHANNELS
 http://mmn.mypsx.net:1935/live/mmnhddocumentary/playlist.m3u8
 #EXTINF:0,Gewhar TV
-#EXTGRP:Documentary
+#EXTGRP:CHANNELS
 https://iptv-link.short.gy/Gewher.m3u8
 #EXTINF:0,RED TV
-#EXTGRP:Documentary
+#EXTGRP:CHANNELS
 http://avrstream.com:1935/live/REDTV/playlist.m3u8
 #EXTINF:0,Alwan Sport 1
-#EXTGRP:Documentary
+#EXTGRP:CHANNELS
 https://raw.githubusercontent.com/ghooooooooooodfer/my-stream/refs/heads/main/Alwansp3.m3u8
 #EXTINF:0,Animal Box
-#EXTGRP:Documentary
+#EXTGRP:CHANNELS
 https://live20.bozztv.com/giatv/giatv-animalbox/animalbox/chunks.m3u8
 #EXTINF:0,Nat Gio Wild
-#EXTGRP:Documentary
+#EXTGRP:CHANNELS
 http://silka.m3um9xplus.org:2052/live/17348628947896/34839548609025/191751.ts
 #EXTINF:0,Al Jazeera Documentary
-#EXTGRP:Documentary
+#EXTGRP:CHANNELS
 https://live-hls-web-ajd.getaj.net/AJD/01.m3u8
 #EXTINF:0,IRIB Mostanad
-#EXTGRP:Documentary
+#EXTGRP:CHANNELS
 https://ncdn.telewebion.ir/mostanad/live/playlist.m3u8
 #EXTINF:0,TRT Belgesel TV
-#EXTGRP:Documentary
+#EXTGRP:CHANNELS
 https://tv-trtbelgesel-dai.medya.trt.com.tr/master_3.m3u8
 #EXTINF:0,Animal Planet
-#EXTGRP:Documentary
+#EXTGRP:CHANNELS
 http://4.30.180.36:8420/animal/index.m3u8?token=test
 #EXTINF:0,Wild Earth
-#EXTGRP:Documentary
+#EXTGRP:CHANNELS
 https://wildearth-plex.amagi.tv/masterR1080p.m3u8
 #EXTINF:0,BBC Earth
-#EXTGRP:Documentary
+#EXTGRP:CHANNELS
 https://amg00793-bbcstudios-amg00793c3-lg-us-2528.playouts.now.amagi.tv/playlist/amg00793-bbcstudios-bbcearta-lgus/playlist.m3u8
 #EXTINF:0,RT Documentary
-#EXTGRP:Documentary
+#EXTGRP:CHANNELS
 http://rt-rtd.rttv.com/live/rtdoc/playlist_4500Kb.m3u8
