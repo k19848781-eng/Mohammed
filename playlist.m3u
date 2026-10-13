@@ -251,3 +251,6 @@ https://amg00793-bbcstudios-amg00793c3-lg-us-2528.playouts.now.amagi.tv/playlist
 #EXTINF:0,RT Documentary
 #EXTGRP:CHANNELS
 http://rt-rtd.rttv.com/live/rtdoc/playlist_4500Kb.m3u8
+#EXTINF:0, Kurdmax Sorani
+#EXTGRP:CHANNELS
+https://www.kurdmax.tv/live-stream
