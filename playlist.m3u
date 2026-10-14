@@ -31,7 +31,7 @@ https://hlspackager.akamaized.net/live/DB/K24/HLS/K24-avc1_2500000=10002,mp4a_12
 https://hlspackager.akamaized.net/live/DB/PAYAM_TV/HLS/PAYAM_TV-avc1_2500000=10002,mp4a_128000=20000.m3u8
 #EXTINF:0,Speda TV
 #EXTGRP:CHANNELS
-https://www.speda1.site/upload/images/spedahd.m3u8
+https://karwan.tv/wp-admin/admin-ajax.php?action=karwan_refresh_post_counts&post_id=197&_cb=1791978272086
 #EXTINF:0,Kirkuk TV
 #EXTGRP:CHANNELS
 http://silka.m3um9xplus.org:2052/live/88577072662804/15518509928643/601413.ts
