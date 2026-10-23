@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1B2340">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="My TV">
+<title>My TV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mpegts.js@1.7.3/dist/mpegts.min.js"></script>
+<style>
+:root{
+  --bg:#F3F4F8; --surface:#FFFFFF; --ink:#1B2340; --muted:#5D6685;
+  --line:#DDE1EC; --sun:#E0A21E; --sun-ink:#1B2340; --err:#B3261E;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#141A30; --surface:#1E2643; --ink:#EEF0F7; --muted:#9AA3C2;
+    --line:#2C355A; --sun:#F2B134; --sun-ink:#141A30; --err:#FF8A80;
+    color-scheme: dark;
+  }
+}
+*,*::before,*::after{box-sizing:inherit}
+html,body{margin:0;height:100%}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Rubik",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-size:16px; line-height:1.45;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:#000}
+.player{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:5;
+  background:#000;
+}
+.screen{position:relative;width:100%;aspect-ratio:16/9;max-height:56vh;margin:0 auto}
+video{width:100%;height:100%;display:block;background:#000}
+.status{
+  position:absolute;inset:0;display:none;align-items:center;justify-content:center;
+  padding:1.5rem;text-align:center;color:#fff;background:rgba(0,0,0,.72);font-size:.95rem
+}
+.status.show{display:flex}
+.now{
+  display:flex;align-items:center;gap:.75rem;padding:.65rem 1rem;
+  background:var(--surface);border-bottom:1px solid var(--line)
+}
+.now .name{flex:1;font-weight:700;font-size:1.05rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.live{width:.6rem;height:.6rem;border-radius:50%;background:var(--sun);flex:none}
+.btn{
+  appearance:none;border:0;border-radius:.6rem;padding:.5rem .8rem;
+  font:inherit;font-weight:500;font-size:.9rem;cursor:pointer;
+  background:var(--bg);color:var(--ink)
+}
+.btn:focus-visible,.ch:focus-visible,input:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.tools{padding:.75rem 1rem .25rem;max-width:760px;margin:0 auto}
+input[type=search]{
+  width:100%;padding:.7rem .9rem;border-radius:.7rem;border:1px solid var(--line);
+  background:var(--surface);color:var(--ink);font:inherit
+}
+.meta{font-size:.82rem;color:var(--muted);padding:.4rem .1rem 0}
+ul{list-style:none;margin:0 auto;padding:.5rem 1rem 2rem;max-width:760px}
+.ch{
+  display:flex;align-items:center;gap:.8rem;width:100%;text-align:left;
+  padding:.7rem .75rem;border:0;border-radius:.6rem;background:transparent;
+  color:var(--ink);font:inherit;cursor:pointer
+}
+.ch:hover{background:var(--surface)}
+.ch .badge{
+  flex:none;width:2.4rem;height:2.4rem;border-radius:.55rem;display:grid;place-items:center;
+  background:var(--surface);border:1px solid var(--line);font-weight:700;font-size:.9rem;color:var(--muted)
+}
+.ch[aria-current="true"]{background:var(--sun);color:var(--sun-ink)}
+.ch[aria-current="true"] .badge{background:var(--sun-ink);color:var(--sun);border-color:transparent}
+.ch .title{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.empty{padding:2rem 1rem;text-align:center;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="player">
+  <div class="screen">
+    <video id="v" controls playsinline autoplay></video>
+    <div class="status" id="status"></div>
+  </div>
+  <div class="now">
+    <span class="live" aria-hidden="true"></span>
+    <span class="name" id="nowName">Loading your playlist…</span>
+    <button class="btn" id="prev" aria-label="Previous channel">‹</button>
+    <button class="btn" id="next" aria-label="Next channel">›</button>
+  </div>
+</div>
+
+<div class="tools">
+  <input type="search" id="q" placeholder="Search channels" aria-label="Search channels">
+  <div class="meta" id="meta"></div>
+</div>
+<ul id="list"></ul>
+
+<script>
+// Your playlist. Edit it on GitHub and the app picks up changes when it opens.
+const PLAYLIST_URL = "https://raw.githubusercontent.com/k19848781-eng/Mohammed/main/playlist.m3u";
+
+const video = document.getElementById("v");
+const statusEl = document.getElementById("status");
+const listEl = document.getElementById("list");
+const nowName = document.getElementById("nowName");
+const meta = document.getElementById("meta");
+const q = document.getElementById("q");
+
+let channels = [];
+let current = -1;
+let hls = null, ts = null;
+let lastLoaded = 0;
+
+function store(k, v){ try{ localStorage.setItem(k, v); }catch(e){} }
+function recall(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+
+function parseM3U(text){
+  const out = []; let name = null;
+  for (const raw of text.split(/\r?\n/)){
+    const line = raw.trim();
+    if (!line) continue;
+    if (line.startsWith("#EXTINF")){
+      const i = line.indexOf(",");
+      name = i >= 0 ? line.slice(i + 1).trim() : "Channel";
+    } else if (!line.startsWith("#")){
+      out.push({ name: name || line.split("/").pop(), url: line.replace(/&amp;/g, "&") });
+      name = null;
+    }
+  }
+  return out;
+}
+
+async function loadPlaylist(){
+  try{
+    const res = await fetch(PLAYLIST_URL + "?t=" + Date.now(), { cache: "no-store" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const text = await res.text();
+    store("playlist", text);
+    return parseM3U(text);
+  }catch(e){
+    const cached = recall("playlist");
+    if (cached){ meta.textContent = "Offline: showing the last saved playlist."; return parseM3U(cached); }
+    throw e;
+  }
+}
+
+function render(){
+  const term = q.value.trim().toLowerCase();
+  listEl.innerHTML = "";
+  let shown = 0;
+  channels.forEach((c, i) => {
+    if (term && !c.name.toLowerCase().includes(term)) return;
+    shown++;
+    const li = document.createElement("li");
+    const b = document.createElement("button");
+    b.className = "ch";
+    b.setAttribute("aria-current", i === current ? "true" : "false");
+    b.innerHTML = `<span class="badge">${i + 1}</span><span class="title"></span>`;
+    b.querySelector(".title").textContent = c.name;
+    b.onclick = () => { play(i); window.scrollTo({ top: 0, behavior: "smooth" }); };
+    li.appendChild(b);
+    listEl.appendChild(li);
+  });
+  if (!shown) listEl.innerHTML = `<li class="empty">No channels match “${term.replace(/</g,"&lt;")}”.</li>`;
+}
+
+function showStatus(msg){ statusEl.textContent = msg; statusEl.classList.toggle("show", !!msg); }
+
+function stop(){
+  if (hls){ hls.destroy(); hls = null; }
+  if (ts){ try{ ts.destroy(); }catch(e){} ts = null; }
+  video.removeAttribute("src"); video.load();
+}
+
+function play(i){
+  if (!channels.length) return;
+  current = (i + channels.length) % channels.length;
+  const c = channels[current];
+  nowName.textContent = c.name;
+  store("lastUrl", c.url);
+  render();
+  stop();
+  showStatus("");
+
+  if (location.protocol === "https:" && c.url.startsWith("http:")){
+    showStatus("This channel uses an http:// link, which your phone’s browser blocks on secure pages. Try another channel, or open the playlist in an IPTV app.");
+    return;
+  }
+
+  const url = c.url;
+  const path = url.split("?")[0].toLowerCase();
+  const fail = () => showStatus("This channel isn’t playing right now. The stream may be offline or block web players.");
+
+  if (path.endsWith(".m3u8")){
+    if (window.Hls && Hls.isSupported()){
+      hls = new Hls({ enableWorker: true });
+      hls.loadSource(url);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.ERROR, (_, d) => { if (d.fatal) fail(); });
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")){
+      video.src = url;
+    } else { fail(); return; }
+  } else if (path.endsWith(".ts") && window.mpegts && mpegts.isSupported()){
+    ts = mpegts.createPlayer({ type: "mpegts", isLive: true, url });
+    ts.attachMediaElement(video);
+    ts.load();
+    ts.on(mpegts.Events.ERROR, fail);
+  } else {
+    video.src = url;
+  }
+  video.onerror = fail;
+  const p = video.play();
+  if (p && p.catch) p.catch(() => showStatus("Tap play to start."));
+}
+
+async function refresh(keepPlaying){
+  try{
+    const list = await loadPlaylist();
+    lastLoaded = Date.now();
+    const playingUrl = channels[current] && channels[current].url;
+    channels = list;
+    meta.textContent = `${channels.length} channels`;
+    if (keepPlaying && playingUrl){
+      const idx = channels.findIndex(c => c.url === playingUrl);
+      if (idx >= 0){ current = idx; render(); return; }
+    }
+    const last = recall("lastUrl");
+    let start = last ? channels.findIndex(c => c.url === last) : -1;
+    play(start >= 0 ? start : 0);
+  }catch(e){
+    nowName.textContent = "Couldn’t load the playlist";
+    meta.textContent = "Check your internet connection, then reopen the app.";
+  }
+}
+
+document.getElementById("prev").onclick = () => play(current - 1);
+document.getElementById("next").onclick = () => play(current + 1);
+q.addEventListener("input", render);
+
+// Re-check the playlist whenever you come back to the app.
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && Date.now() - lastLoaded > 60000) refresh(true);
+});
+
+refresh(false);
+</script>
+</body>
+</html>
