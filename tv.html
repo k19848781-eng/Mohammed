@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mohammed TV</title>
-<link rel="manifest" href="tv.webmanifest">
+<link rel="manifest" href="tv-manifest.json">
 <meta name="theme-color" content="#0E1A2B">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -39,8 +39,12 @@ button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:3px solid var(--signal);outline-offset:2px}
 .wrap{max-width:980px;margin:0 auto;padding:16px}
-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
 .brand{font-weight:800;font-size:1.6rem;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+.brand{font-size:16px!important;line-height:1.4;width:100%;white-space:nowrap;justify-content:center}
+#brandText{display:inline-block}
+.brand .tel{color:inherit;text-decoration:none;unicode-bidi:isolate}
+.phone{color:var(--ink);text-decoration:none;font-weight:600;font-size:1.05rem;white-space:nowrap;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--panel);font-variant-numeric:tabular-nums}
 .brand .dot{width:12px;height:12px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 4px color-mix(in srgb,var(--signal) 25%,transparent)}
 .btn{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:9px 16px;font-weight:600}
 .btn.primary{background:var(--signal);border-color:var(--signal);color:var(--signal-ink)}
@@ -101,7 +105,7 @@ dialog::backdrop{background:rgba(5,12,22,.55)}
 <body>
 <div class="wrap">
   <header>
-    <div class="brand"><span class="dot" aria-hidden="true"></span>Mohammed TV</div>
+    <div class="brand"><span id="brandText">Mohammed TV - <a class="tel" href="tel:07503434302">07503434302</a></span></div>
   </header>
 
   <div class="layout">
@@ -133,7 +137,6 @@ dialog::backdrop{background:rgba(5,12,22,.55)}
     <section class="guide" aria-label="Channel list">
       <h2>Channels</h2>
       <input class="search" id="search" type="search" placeholder="Search channels">
-      <div class="chips" id="chips"></div>
       <ul class="list" id="list"></ul>
     </section>
   </div>
@@ -188,24 +191,15 @@ dialog::backdrop{background:rgba(5,12,22,.55)}
   function categories(){ return ['All', ...[...new Set(channels.map(c => c.cat))].sort()]; }
 
   function render(){
-    const cats = categories();
-    if (!cats.includes(filter)) filter = 'All';
-    $('chips').innerHTML = '';
-    cats.forEach(c => {
-      const b = document.createElement('button');
-      b.className = 'chip'; b.textContent = c; b.setAttribute('aria-pressed', c===filter);
-      b.onclick = () => { filter = c; render(); };
-      $('chips').appendChild(b);
-    });
     const list = $('list'); list.innerHTML = '';
     const shown = channels.map((c,i)=>({c,i})).filter(({c}) =>
-      (filter==='All' || c.cat===filter) && c.name.toLowerCase().includes(query));
+      c.name.toLowerCase().includes(query));
     if (!shown.length){ list.innerHTML = '<li class="empty-list">No channels found.</li>'; return; }
     shown.forEach(({c,i}) => {
       const li = document.createElement('li');
       li.className = 'item' + (i===current ? ' on' : '');
       li.innerHTML = `<span class="num">${i+1}</span>
-        <button class="play"><strong>${esc(c.name)}</strong><span>${esc(c.cat)}</span></button>`;
+        <button class="play"><strong>${esc(c.name)}</strong></button>`;
       li.querySelector('.play').onclick = () => tune(i);
       list.appendChild(li);
     });
@@ -222,7 +216,7 @@ dialog::backdrop{background:rgba(5,12,22,.55)}
     const c = channels[current];
     $('chnum').textContent = current+1;
     $('nowName').textContent = c.name;
-    $('nowMeta').textContent = c.cat;
+    $('nowMeta').textContent = '';
     showOsd(current+1); render();
     if (hls){ hls.destroy(); hls = null; }
     if (isYouTube(c.url)){
@@ -255,6 +249,17 @@ dialog::backdrop{background:rgba(5,12,22,.55)}
   });
   $('search').oninput = e => { query = e.target.value.trim().toLowerCase(); render(); };
 
+
+  function fitBrand(){
+    const box = document.querySelector('.brand'), t = $('brandText');
+    if (!box || !t) return;
+    box.style.setProperty('font-size','16px','important');
+    const w = box.clientWidth, tw = t.scrollWidth;
+    if (w && tw) box.style.setProperty('font-size', (16 * w / tw * 0.99) + 'px', 'important');
+  }
+  fitBrand();
+  window.addEventListener('resize', fitBrand);
+  if (document.fonts) document.fonts.ready.then(fitBrand);
   loadPlaylist();
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 })();
