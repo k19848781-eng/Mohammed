@@ -99,6 +99,14 @@ dialog::backdrop{background:rgba(5,12,22,.55)}
 .dlg .hint{color:var(--muted);font-size:.85rem;font-weight:400}
 .dlg .row{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
 .tabs{display:flex;gap:6px}
+.fsbtn{margin-top:10px;width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--panel);font-weight:600;font-size:1rem}
+body.fs{overflow:hidden}
+body.fs .tv{position:fixed;inset:0;border-radius:0;z-index:50;background:#000}
+body.fs .tv video{width:100%;height:100%;aspect-ratio:auto;object-fit:contain}
+body.fs .empty-screen{display:none!important}
+.osd small{display:block;font-size:1rem;font-weight:600;margin-top:4px;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.8)}
+body.fs .osd{font-size:4rem;top:24px;right:32px}
+body.fs .osd small{font-size:1.5rem}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -131,6 +139,7 @@ dialog::backdrop{background:rgba(5,12,22,.55)}
           <button id="downBtn" aria-label="Next channel">▼</button>
         </div>
       </div>
+      <button class="fsbtn" id="fsBtn">⛶ Full screen</button>
       <div class="status" id="status" role="status"></div>
     </section>
 
@@ -207,7 +216,7 @@ dialog::backdrop{background:rgba(5,12,22,.55)}
   }
 
   function showOsd(n){
-    const o = $('osd'); o.textContent = n; o.classList.add('show');
+    const o = $('osd'); o.innerHTML = n + (channels[current] ? '<small>' + esc(channels[current].name) + '</small>' : ''); o.classList.add('show');
     clearTimeout(osdTimer); osdTimer = setTimeout(()=>o.classList.remove('show'), 1800);
   }
 
@@ -273,6 +282,32 @@ dialog::backdrop{background:rgba(5,12,22,.55)}
     if (w && tw) box.style.setProperty('font-size', (16 * w / tw * 0.99) + 'px', 'important');
   }
   fitBrand();
+
+  function setFs(on){
+    document.body.classList.toggle('fs', on);
+    video.controls = !on;
+    if (on){
+      const el = document.documentElement;
+      const req = el.requestFullscreen || el.webkitRequestFullscreen;
+      if (req) try { const r = req.call(el); if (r && r.catch) r.catch(()=>{}); } catch(e){}
+      if (current >= 0) showOsd(current+1);
+    } else {
+      const ex = document.exitFullscreen || document.webkitExitFullscreen;
+      if ((document.fullscreenElement || document.webkitFullscreenElement) && ex) try { const r = ex.call(document); if (r && r.catch) r.catch(()=>{}); } catch(e){}
+    }
+  }
+  const isFs = () => document.body.classList.contains('fs');
+  $('fsBtn').onclick = () => setFs(true);
+  $('osd').parentElement.addEventListener('click', () => { if (isFs()) setFs(false); });
+  document.addEventListener('keydown', e => {
+    const k = e.key, c = e.keyCode;
+    if (isFs() && (k==='Escape' || k==='Backspace' || k==='GoBack' || c===461 || c===10009)){ e.preventDefault(); setFs(false); return; }
+    const onPage = !document.activeElement || document.activeElement===document.body || document.activeElement===video;
+    if ((k==='Enter' || c===13) && onPage){ e.preventDefault(); setFs(!isFs()); }
+  });
+  document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && isFs()) setFs(false); });
+  // Big screens without touch (TVs) start in full screen
+  if (window.innerWidth >= 1000 && !(window.matchMedia && matchMedia('(pointer:coarse)').matches)) setFs(true);
   window.addEventListener('resize', fitBrand);
   if (document.fonts) document.fonts.ready.then(fitBrand);
   loadPlaylist();
