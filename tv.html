@@ -186,6 +186,7 @@ dialog::backdrop{background:rgba(5,12,22,.55)}
       }
     }
     render();
+    if (channels.length && current < 0) tune(0);
   }
 
   function categories(){ return ['All', ...[...new Set(channels.map(c => c.cat))].sort()]; }
@@ -210,6 +211,20 @@ dialog::backdrop{background:rgba(5,12,22,.55)}
     clearTimeout(osdTimer); osdTimer = setTimeout(()=>o.classList.remove('show'), 1800);
   }
 
+  let autoMuted = false;
+  function startPlay(){
+    video.play().then(()=>setStatus('Live')).catch(() => {
+      video.muted = true; autoMuted = true;
+      video.play().then(()=>setStatus('Live · Tap anywhere for sound')).catch(()=>{});
+    });
+  }
+  document.addEventListener('pointerdown', () => {
+    if (autoMuted){ video.muted = false; autoMuted = false; setStatus('Live'); }
+  });
+  document.addEventListener('keydown', () => {
+    if (autoMuted){ video.muted = false; autoMuted = false; setStatus('Live'); }
+  });
+
   function tune(i){
     if (!channels.length) return;
     current = (i + channels.length) % channels.length;
@@ -230,11 +245,11 @@ dialog::backdrop{background:rgba(5,12,22,.55)}
     if (/\.m3u8(\?|$)/i.test(c.url) && window.Hls && Hls.isSupported()){
       hls = new Hls();
       hls.loadSource(c.url); hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(()=>{}); setStatus('Live'); });
+      hls.on(Hls.Events.MANIFEST_PARSED, () => { startPlay(); });
       hls.on(Hls.Events.ERROR, (e, d) => { if (d.fatal) setStatus('This channel isn’t available right now. Try another one.', true); });
     } else {
       video.src = c.url;
-      video.play().then(()=>setStatus('Live')).catch(()=>{});
+      startPlay();
     }
   }
   video.addEventListener('error', () => { if (current>=0 && !hls) setStatus('This channel isn’t available right now. Try another one.', true); });
