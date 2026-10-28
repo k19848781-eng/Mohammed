@@ -1,0 +1,30 @@
+name: Build APK
+on:
+  push:
+    paths: ['android-app.zip', '.github/workflows/build.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Build
+        run: |
+          unzip -o android-app.zip -d src
+          cd src
+          gradle assembleRelease --no-daemon --stacktrace
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp src/app/build/outputs/apk/release/app-release.apk MohammedTV.apk
+          gh release create "v${{ github.run_number }}" MohammedTV.apk --title "Mohammed TV ${{ github.run_number }}" --notes "Android app"
