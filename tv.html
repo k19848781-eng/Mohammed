@@ -307,14 +307,24 @@ body.ott.manual .exitbtn{display:block;margin-bottom:12px;padding:10px;border-ra
   const guideOpen = () => body.classList.contains('guide-open');
 
   function applyMode(){
-    const on = manual || (land && land.matches);
+    const wide = window.innerWidth >= window.innerHeight;
+    const on = manual || wide;
     body.classList.toggle('ott', !!on);
-    body.classList.toggle('manual', manual && !(land && land.matches));
+    body.classList.toggle('manual', manual && !wide);
     video.controls = !on;
     if (!on) closeGuide(); else flashInfo();
     fitBrand();
   }
-  if (land){ if (land.addEventListener) land.addEventListener('change', applyMode); else if (land.addListener) land.addListener(applyMode); }
+  let lastWide = null;
+  window.addEventListener('resize', () => { const w = window.innerWidth >= window.innerHeight; if (w !== lastWide){ lastWide = w; applyMode(); } });
+  // Hide the TV browser's bars: go true full screen on the first button press or click
+  function goNativeFs(){
+    if (!isOtt() || document.fullscreenElement || document.webkitFullscreenElement) return;
+    const el = document.documentElement, req = el.requestFullscreen || el.webkitRequestFullscreen;
+    try { const r = req && req.call(el); if (r && r.catch) r.catch(()=>{}); } catch(e){}
+  }
+  document.addEventListener('keydown', goNativeFs, true);
+  document.addEventListener('pointerdown', goNativeFs, true);
 
   function flashInfo(){
     body.classList.add('info'); clearTimeout(infoTimer);
@@ -342,7 +352,8 @@ body.ott.manual .exitbtn{display:block;margin-bottom:12px;padding:10px;border-ra
     manual = true;
     const el = document.documentElement, req = el.requestFullscreen || el.webkitRequestFullscreen;
     try { const r = req && req.call(el); if (r && r.then) r.then(() => { try { screen.orientation.lock('landscape').catch(()=>{}); } catch(e){} }).catch(()=>{}); } catch(e){}
-    applyMode();
+    lastWide = window.innerWidth >= window.innerHeight;
+  applyMode();
   };
   function exitManual(){
     manual = false;
@@ -351,7 +362,7 @@ body.ott.manual .exitbtn{display:block;margin-bottom:12px;padding:10px;border-ra
     applyMode();
   }
   $('exitOtt').onclick = exitManual;
-  document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && manual) exitManual(); });
+  document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && manual && window.innerWidth < window.innerHeight) exitManual(); });
 
   $('video').parentElement.addEventListener('click', () => {
     if (!isOtt()) return;
