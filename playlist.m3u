@@ -82,7 +82,7 @@ http://avrstream.com:1935/live/SoranEntertainment/playlist.m3u8
 http://shnatv.ddns.net:1935/live/shnatv/playlist.m3u8
 #EXTINF:0,Speda Drama TV
 #EXTGRP:CHANNELS
-https://speda2.site/upload/images/spedadrama.m3u8
+https://www.speda2.site/upload/images/spedadrama.m3u8
 #EXTINF:0,Dunya TV
 #EXTGRP:CHANNELS
 http://dunyahd.ddns.net/live/DunyaHd/index.m3u8
