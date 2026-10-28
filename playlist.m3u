@@ -16,7 +16,7 @@ https://avam5.site/upload/images/1080.m3u8
 https://live.rudaw.net/hls/rudaw-tv/master.m3u8
 #EXTINF:0,Kurdmax TV
 #EXTGRP:CHANNELS
-https://www.kurdmax.tv/live-stream
+https://stream.kurdmax.tv/app/kurdmax-sorani1/medialist_917977731947844006_hls.m3u8
 #EXTINF:0,Kurdmax Show
 #EXTGRP:CHANNELS
 http://silka.m3um9xplus.org:2052/live/88577072662804/15518509928643/601422.ts
