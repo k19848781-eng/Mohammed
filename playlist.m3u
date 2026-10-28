@@ -16,7 +16,7 @@ https://avam5.site/upload/images/1080.m3u8
 https://live.rudaw.net/hls/rudaw-tv/master.m3u8
 #EXTINF:0,Kurdmax TV
 #EXTGRP:CHANNELS
-http://core.itsall.pro/live/megapeer/PQubhxj8KGGKSLPAKS/265867.ts
+http://silka.m3um9xplus.org:2052/live/88577072662804/15518509928643/601420.ts
 #EXTINF:0,Kurdmax Show
 #EXTGRP:CHANNELS
 http://silka.m3um9xplus.org:2052/live/88577072662804/15518509928643/601422.ts
@@ -248,6 +248,3 @@ https://amg00793-bbcstudios-amg00793c3-lg-us-2528.playouts.now.amagi.tv/playlist
 #EXTINF:0,RT Documentary
 #EXTGRP:CHANNELS
 http://rt-rtd.rttv.com/live/rtdoc/playlist_4500Kb.m3u8
-#EXTINF:0, Kurdmax Sorani
-#EXTGRP:CHANNELS
-https://stream.kurdmax.tv/app/kurdmax-sorani1/medialist_917977731947844006_hls.m3u8
