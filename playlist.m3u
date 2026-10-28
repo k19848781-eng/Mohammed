@@ -251,6 +251,30 @@ https://amg00793-bbcstudios-amg00793c3-lg-us-2528.playouts.now.amagi.tv/playlist
 #EXTINF:0,RT Documentary
 #EXTGRP:CHANNELS
 http://rt-rtd.rttv.com/live/rtdoc/playlist_4500Kb.m3u8
-#EXTINF:0,Kurdmax TV
+#EXTINF:0,MMN Show 
 #EXTGRP:CHANNELS
-https://www.kurdmax.tv/live-stream
+http://mmn.mypsx.net:1935/live/mmnhddshow/playlist.m3u8
+#EXTINF:0,MMN News 
+#EXTGRP:CHANNELS
+http://mmn.mypsx.net:1935/live/mmnhdnews/playlist.m3u8
+#EXTINF:0,MMN Drama 
+#EXTGRP:CHANNELS
+http://mmn.mypsx.net:1935/live/mmnhddrama/playlist.m3u8
+#EXTINF:0,MMN Action 
+#EXTGRP:CHANNELS
+http://mmn.mypsx.net:1935/live/mmnhdaction/playlist.m3u8
+#EXTINF:0,MMN Movies 
+#EXTGRP:CHANNELS
+http://mmn.mypsx.net:1935/live/mmnhdmovies/playlist.m3u8
+#EXTINF:0,MMN Quran 
+#EXTGRP:CHANNELS
+http://mmn.mypsx.net:1935/live/mmnhdquran/playlist.m3u8
+#EXTINF:0,Walla TV 
+#EXTGRP:CHANNELS
+https://cdn.karwan.tv/wallatv/index.m3u8
+#EXTINF:0,SPI TV 
+#EXTGRP:CHANNELS
+https://183.bozztv.com/giatv/giatv-spihd_2022/spihd_2022/chunks.m3u8
+#EXTINF:0,SPI Quran 
+#EXTGRP:CHANNELS
+https://live20.bozztv.com/giatv/giatv-spi_quran_hd/spi_quran_hd/chunks.m3u8
