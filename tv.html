@@ -100,13 +100,31 @@ dialog::backdrop{background:rgba(5,12,22,.55)}
 .dlg .row{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
 .tabs{display:flex;gap:6px}
 .fsbtn{margin-top:10px;width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--panel);font-weight:600;font-size:1rem}
-body.fs{overflow:hidden}
-body.fs .tv{position:fixed;inset:0;border-radius:0;z-index:50;background:#000}
-body.fs .tv video{width:100%;height:100%;aspect-ratio:auto;object-fit:contain}
-body.fs .empty-screen{display:none!important}
+.exitbtn{display:none}
 .osd small{display:block;font-size:1rem;font-weight:600;margin-top:4px;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.8)}
-body.fs .osd{font-size:4rem;top:24px;right:32px}
-body.fs .osd small{font-size:1.5rem}
+body.ott{overflow:hidden;background:#000}
+body.ott .tv{position:fixed;inset:0;border-radius:0;z-index:50;background:#000}
+body.ott .tv video{width:100%;height:100%;aspect-ratio:auto;object-fit:contain}
+body.ott .empty-screen{display:none!important}
+body.ott .osd{font-size:4rem;top:24px;right:32px}
+body.ott .osd small{font-size:1.5rem}
+body.ott header{position:fixed;top:0;left:0;right:0;z-index:65;margin:0;padding:18px 28px 40px;color:#fff;background:linear-gradient(rgba(0,0,0,.8),transparent);opacity:0;transition:opacity .3s;pointer-events:none}
+body.ott.info header,body.ott.guide-open header{opacity:1}
+body.ott .brand{justify-content:flex-start;color:#fff}
+body.ott .brand .tel{color:#fff}
+body.ott .remote,body.ott .fsbtn{display:none}
+body.ott .status{position:fixed;bottom:16px;right:24px;z-index:56;margin:0;color:#fff;background:rgba(0,0,0,.65);padding:6px 12px;border-radius:8px}
+body.ott .status:empty{display:none}
+body.ott .guide{position:fixed;top:0;bottom:0;left:0;width:min(440px,45vw);z-index:60;border:0;border-radius:0;background:rgba(10,20,34,.94);color:#EAF1F8;padding:90px 16px 16px;display:flex;flex-direction:column;transform:translateX(-105%);transition:transform .25s}
+body.ott.guide-open .guide{transform:none}
+body.ott .guide h2{color:#F2B33D}
+body.ott .guide .list{max-height:none;flex:1}
+body.ott .guide .search{background:rgba(255,255,255,.1);border-color:transparent;color:#fff}
+body.ott .item{border-color:rgba(255,255,255,.12)}
+body.ott .item .num{color:#93A6BD}
+body.ott .item.on{background:rgba(242,179,61,.16);border-radius:10px}
+body.ott .item .play:focus{outline:3px solid #F2B33D;outline-offset:4px;border-radius:6px}
+body.ott.manual .exitbtn{display:block;margin-bottom:12px;padding:10px;border-radius:10px;border:0;background:rgba(255,255,255,.12);color:#fff;font-weight:600}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -144,6 +162,7 @@ body.fs .osd small{font-size:1.5rem}
     </section>
 
     <section class="guide" aria-label="Channel list">
+      <button class="exitbtn" id="exitOtt">✕ Exit full screen</button>
       <h2>Channels</h2>
       <input class="search" id="search" type="search" placeholder="Search channels">
       <ul class="list" id="list"></ul>
@@ -242,6 +261,7 @@ body.fs .osd small{font-size:1.5rem}
     $('nowName').textContent = c.name;
     $('nowMeta').textContent = '';
     showOsd(current+1); render();
+    if (document.body.classList.contains('ott')) flashInfo();
     if (hls){ hls.destroy(); hls = null; }
     if (isYouTube(c.url)){
       video.removeAttribute('src'); video.load();
@@ -266,48 +286,101 @@ body.fs .osd small{font-size:1.5rem}
 
   $('upBtn').onclick = () => tune(current<0 ? 0 : current-1);
   $('downBtn').onclick = () => tune(current<0 ? 0 : current+1);
-  document.addEventListener('keydown', e => {
-    if (e.target.matches('input')) return;
-    if (e.key==='ArrowUp'){ e.preventDefault(); $('upBtn').click(); }
-    if (e.key==='ArrowDown'){ e.preventDefault(); $('downBtn').click(); }
-  });
   $('search').oninput = e => { query = e.target.value.trim().toLowerCase(); render(); };
 
 
   function fitBrand(){
     const box = document.querySelector('.brand'), t = $('brandText');
     if (!box || !t) return;
+    if (document.body.classList.contains('ott')){ box.style.setProperty('font-size', Math.round(Math.min(34, Math.max(18, window.innerWidth/42))) + 'px', 'important'); return; }
     box.style.setProperty('font-size','16px','important');
     const w = box.clientWidth, tw = t.scrollWidth;
     if (w && tw) box.style.setProperty('font-size', (16 * w / tw * 0.99) + 'px', 'important');
   }
   fitBrand();
 
-  function setFs(on){
-    document.body.classList.toggle('fs', on);
+  // ---------- OTT / TV mode ----------
+  const body = document.body;
+  const land = window.matchMedia ? matchMedia('(orientation: landscape) and (min-width: 640px)') : null;
+  let manual = false, guideTimer, infoTimer;
+  const isOtt = () => body.classList.contains('ott');
+  const guideOpen = () => body.classList.contains('guide-open');
+
+  function applyMode(){
+    const on = manual || (land && land.matches);
+    body.classList.toggle('ott', !!on);
+    body.classList.toggle('manual', manual && !(land && land.matches));
     video.controls = !on;
-    if (on){
-      const el = document.documentElement;
-      const req = el.requestFullscreen || el.webkitRequestFullscreen;
-      if (req) try { const r = req.call(el); if (r && r.catch) r.catch(()=>{}); } catch(e){}
-      if (current >= 0) showOsd(current+1);
-    } else {
-      const ex = document.exitFullscreen || document.webkitExitFullscreen;
-      if ((document.fullscreenElement || document.webkitFullscreenElement) && ex) try { const r = ex.call(document); if (r && r.catch) r.catch(()=>{}); } catch(e){}
-    }
+    if (!on) closeGuide(); else flashInfo();
+    fitBrand();
   }
-  const isFs = () => document.body.classList.contains('fs');
-  $('fsBtn').onclick = () => setFs(true);
-  $('osd').parentElement.addEventListener('click', () => { if (isFs()) setFs(false); });
+  if (land){ if (land.addEventListener) land.addEventListener('change', applyMode); else if (land.addListener) land.addListener(applyMode); }
+
+  function flashInfo(){
+    body.classList.add('info'); clearTimeout(infoTimer);
+    infoTimer = setTimeout(() => body.classList.remove('info'), 4000);
+  }
+  function resetGuideTimer(){ clearTimeout(guideTimer); guideTimer = setTimeout(closeGuide, 12000); }
+  function openGuide(){
+    body.classList.add('guide-open');
+    const btn = document.querySelector('#list .item.on .play') || document.querySelector('#list .play');
+    if (btn){ btn.focus(); btn.scrollIntoView({block:'center'}); }
+    resetGuideTimer();
+  }
+  function closeGuide(){
+    body.classList.remove('guide-open'); clearTimeout(guideTimer);
+    if (document.activeElement && $('list').contains(document.activeElement)) document.activeElement.blur();
+  }
+  function moveFocus(dir){
+    const btns = [...document.querySelectorAll('#list .play')]; if (!btns.length) return;
+    let i = btns.indexOf(document.activeElement);
+    i = i < 0 ? 0 : Math.min(btns.length-1, Math.max(0, i+dir));
+    btns[i].focus(); btns[i].scrollIntoView({block:'nearest'});
+  }
+
+  $('fsBtn').onclick = () => {
+    manual = true;
+    const el = document.documentElement, req = el.requestFullscreen || el.webkitRequestFullscreen;
+    try { const r = req && req.call(el); if (r && r.then) r.then(() => { try { screen.orientation.lock('landscape').catch(()=>{}); } catch(e){} }).catch(()=>{}); } catch(e){}
+    applyMode();
+  };
+  function exitManual(){
+    manual = false;
+    const ex = document.exitFullscreen || document.webkitExitFullscreen;
+    try { if ((document.fullscreenElement || document.webkitFullscreenElement) && ex){ const r = ex.call(document); if (r && r.catch) r.catch(()=>{}); } } catch(e){}
+    applyMode();
+  }
+  $('exitOtt').onclick = exitManual;
+  document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && manual) exitManual(); });
+
+  $('video').parentElement.addEventListener('click', () => {
+    if (!isOtt()) return;
+    if (guideOpen()) closeGuide(); else openGuide();
+  });
+  $('list').addEventListener('click', e => { if (isOtt() && e.target.closest('.play')) closeGuide(); });
+
   document.addEventListener('keydown', e => {
     const k = e.key, c = e.keyCode;
-    if (isFs() && (k==='Escape' || k==='Backspace' || k==='GoBack' || c===461 || c===10009)){ e.preventDefault(); setFs(false); return; }
-    const onPage = !document.activeElement || document.activeElement===document.body || document.activeElement===video;
-    if ((k==='Enter' || c===13) && onPage){ e.preventDefault(); setFs(!isFs()); }
+    const back = k==='Escape' || k==='GoBack' || k==='BrowserBack' || c===461 || c===10009 || (k==='Backspace' && !(e.target.matches && e.target.matches('input')));
+    const up = k==='ArrowUp' || c===38, down = k==='ArrowDown' || c===40;
+    const ok = k==='Enter' || c===13 || c===23;
+    const chUp = k==='ChannelUp' || c===427 || k==='PageUp', chDown = k==='ChannelDown' || c===428 || k==='PageDown';
+    if (isOtt() && guideOpen()){
+      resetGuideTimer();
+      if (back){ e.preventDefault(); closeGuide(); return; }
+      if (e.target.matches && e.target.matches('input')) return;
+      if (up || down){ e.preventDefault(); moveFocus(up ? -1 : 1); return; }
+      return; // OK on a focused channel plays it
+    }
+    if (e.target.matches && e.target.matches('input')) return;
+    if (chUp){ e.preventDefault(); tune(current<0 ? 0 : current+1); return; }
+    if (chDown){ e.preventDefault(); tune(current<0 ? 0 : current-1); return; }
+    if (up){ e.preventDefault(); tune(current<0 ? 0 : current-1); return; }
+    if (down){ e.preventDefault(); tune(current<0 ? 0 : current+1); return; }
+    if (isOtt() && ok){ e.preventDefault(); openGuide(); return; }
+    if (isOtt() && back && manual){ e.preventDefault(); exitManual(); }
   });
-  document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && isFs()) setFs(false); });
-  // Big screens without touch (TVs) start in full screen
-  if (window.innerWidth >= 1000 && !(window.matchMedia && matchMedia('(pointer:coarse)').matches)) setFs(true);
+  applyMode();
   window.addEventListener('resize', fitBrand);
   if (document.fonts) document.fonts.ready.then(fitBrand);
   loadPlaylist();
