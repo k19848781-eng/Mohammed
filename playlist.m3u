@@ -181,7 +181,7 @@ https://cdn.faina.ir/faina-stream/tenants/3887e2cb-0766-419d-ac8a-6303ca2f09dc/v
 http://silka.m3um9xplus.org:2052/live/21116253178258/14909458224355/97079.ts
 #EXTINF:0,Bein Sport 1
 #EXTGRP:CHANNELS
-https://stream.supertv.gg:3001/supertv/sport/stv1/ch1/adaptive.m3u8
+https://balance.footballii.ir/hls2/bein1.m3u8
 #EXTINF:0,Bein Sport 2
 #EXTGRP:CHANNELS
 http://31.43.191.125:8080/live/restream/restream/842.ts
