@@ -299,3 +299,39 @@ https://app-live.org/live/3268334b/index.m3u8
 #EXTINF:0,Bangawaz TV
 #EXTGRP:CHANNELS
 http://bangawaztv.ddns.net:40/live/bangawaztv/playlist.m3u8
+#EXTINF:0,Barin Movies
+#EXTGRP:CHANNELS
+https://live1.karwan.tv/barin-movies/tracks-v1a1/mono.m3u8?token=9f2bf4374f0a6461c0dec19d1f61dae3ba1babe9-8e4566ee2c2abcb2b619c1c22aa5fd45-1793256210-1793234610
+#EXTINF:0,Barin Family
+#EXTGRP:CHANNELS
+https://live1.karwan.tv/barin-family/tracks-v1a1/mono.m3u8?token=36719211f3d019bd0ee88c9ae1053577a7464f0d-3a35251a9fc5e7c9bcfeb94fe028a2e1-1793256525-1793234925
+#EXTINF:0,Barin Quran
+#EXTGRP:CHANNELS
+https://live1.karwan.tv/barin-quran/tracks-v1a1/mono.m3u8?token=465509192cd7dacfc8f7e67f2cd9f7c248f3b9db-b0a50284ae4482a3b19d752ab7507ad8-1793256634-1793235034
+#EXTINF:0,Bnar Action
+#EXTGRP:CHANNELS
+https://live1.karwan.tv/bnar-action/tracks-v1a1/mono.m3u8?token=5f999ec085a7c0a797deb2d7c3240094c90e1398-45065cbc84d77f864c849682007ffe5c-1793256774-1793235174
+#EXTINF:0,Bnar Movies
+#EXTGRP:CHANNELS
+https://live1.karwan.tv/bnar-movies/tracks-v1a1/mono.m3u8?token=d062b39b3be356ec9968501b3c027d831b5f54a8-544e090dfc5954498830ceb0f9dba5c6-1793256980-1793235380
+#EXTINF:0,Gewher-Sport
+#EXTGRP:CHANNELS
+https://live1.karwan.tv/gewher-sport/tracks-v1a1/mono.m3u8?token=f29037eea635589d48daf5ae18dc35beaf3d954a-099d8bd3dcc0e0eed220153cc33e681f-1793257150-1793235550
+#EXTINF:0,Graryan TV
+#EXTGRP:CHANNELS
+https://live1.karwan.tv/graryan-tv/tracks-v1a1/mono.m3u8?token=6fb60b756f11a1269e45be793e9a244a8306176c-4328561e084b80eb46e282b6c8cda618-1793257438-1793235838
+#EXTINF:0,Mix TV
+#EXTGRP:CHANNELS
+https://live1.karwan.tv/mix-tv/tracks-v1a1/mono.m3u8?token=30f975d35eeaf5f2e6ac340366684123eef8a62e-0e9dc667beadd47eb5dc9729577d91c3-1793257547-1793235947
+#EXTINF:0,Parwarday Duhok
+#EXTGRP:CHANNELS
+https://live1.karwan.tv/parwarday-tv-duhok/tracks-v1a1/mono.m3u8?token=ed05f0005aa0840997681822e116e173b299b73f-ac00515c015486b90d643084dc350329-1793257698-1793236098
+#EXTINF:0,Parwarday Hawler
+#EXTGRP:CHANNELS
+https://live1.karwan.tv/parwarday-tv-hawler/tracks-v2a1/mono.m3u8?token=448ec27901bdd4a4d05d2410298ff21bc662a2fd-af4d00d0d44ecb039670257622f9bea7-1793257832-1793236232
+#EXTINF:0,Ranya City
+#EXTGRP:CHANNELS
+https://live1.karwan.tv/ranya-city/tracks-v1a1/mono.m3u8?token=e3706aebb2758d696a8928bc799d88189eb2aaaf-5e9e12de7fa5f2b7f7f93d5822c50e18-1793257961-1793236361
+#EXTINF:0,Shar TV
+#EXTGRP:CHANNELS
+https://live1.karwan.tv/shar-tv/tracks-v1a1/mono.m3u8?token=dc07fc51bc19b6064742ac67faba1ad47fc11ab5-58f339a1b2c1b6115f659668a25ecf07-1793258067-1793236467
