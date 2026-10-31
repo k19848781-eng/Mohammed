@@ -11,7 +11,7 @@ jobs:
   fix:
     runs-on: ubuntu-latest
     steps:
-      - name: Cut the video into small pieces
+      - name: Make the video light and cut it into small pieces
         env:
           GH_TOKEN: ${{ github.token }}
           LINK: ${{ github.event.inputs.link }}
@@ -22,7 +22,7 @@ jobs:
           BASE="https://github.com/$GITHUB_REPOSITORY/releases/download/videos/"
           curl -L --fail --retry 3 -o in.mp4 "$LINK"
           mkdir out
-          ffmpeg -y -i in.mp4 -map 0:v:0 -map 0:a:0? -c copy -f hls -hls_time 30 -hls_playlist_type vod -hls_base_url "$BASE" -hls_segment_filename "out/${NAME}_%04d.ts" "out/${NAME}.m3u8"
+          ffmpeg -y -i in.mp4 -map 0:v:0 -map 0:a:0? -vf "scale=-2:'min(720,ih)'" -c:v libx264 -preset veryfast -profile:v main -crf 27 -maxrate 1000k -bufsize 2000k -g 60 -keyint_min 60 -sc_threshold 0 -c:a aac -b:a 96k -ac 2 -f hls -hls_time 30 -hls_playlist_type vod -hls_base_url "$BASE" -hls_segment_filename "out/${NAME}_%04d.ts" "out/${NAME}.m3u8"
           gh release view videos -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 || gh release create videos -R "$GITHUB_REPOSITORY" --prerelease --title "Videos" --notes "Videos for my channels"
           gh release upload videos out/* -R "$GITHUB_REPOSITORY" --clobber
           echo "## Your new fast link:" >> "$GITHUB_STEP_SUMMARY"
